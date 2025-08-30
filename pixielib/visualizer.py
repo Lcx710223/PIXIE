@@ -37,6 +37,13 @@ class Visualizer(object):
             self.cfg = cfg
         else:
             self.cfg = config
+        
+        if 'cuda' in device and not torch.cuda.is_available():
+            device = 'cpu'
+            print(f'cuda is not available. device is changed to cpu')
+        if rasterizer_type == 'standard' and device == 'cpu':
+            rasterizer_type = 'pytorch3d'
+            print('Warning: standard rasterizer needs cuda, change to pytorch3d rasterizer')
         self.device = device
         self.render_size = render_size
         # cache data for smplx texture
