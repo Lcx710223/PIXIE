@@ -140,9 +140,9 @@ class KeypointRCNN(object):
 
 #-- face landmarks (68)
 class FAN(object):
-    def __init__(self):
+    def __init__(self, device='cuda:0'):
         import face_alignment
-        self.model = face_alignment.FaceAlignment(face_alignment.LandmarksType._2D, flip_input=False)
+        self.model = face_alignment.FaceAlignment(face_alignment.LandmarksType.TWO_D, flip_input=False, device=device)
 
     def run(self, image):
         '''
