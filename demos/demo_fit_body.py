@@ -1,3 +1,5 @@
+### JULES250831-121-设置CPU模式或者GPU模式。
+
 import os, sys
 import numpy as np
 import torch.backends.cudnn as cudnn
@@ -118,8 +120,8 @@ if __name__ == '__main__':
                         help='path to the test data, can be image folder, image path, image path list, video')
     parser.add_argument('-s', '--savefolder', default='TestSamples/body/results', type=str,
                         help='path to the output directory, where results(obj, txt files) will be stored.')
-    parser.add_argument('--device', default='cuda:0', type=str,
-                        help='set device, cpu for using cpu' )
+    parser.add_argument('--device', default='cpu', type=str,
+                        help='set device, default=cuda:0带引号改GPU' )
     # process test images
     parser.add_argument('--iscrop', default=True, type=lambda x: x.lower() in ['true', '1'],
                         help='whether to crop input image, set false only when the test image are well cropped' )
