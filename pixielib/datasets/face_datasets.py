@@ -1,3 +1,5 @@
+### JULES-250831-32-55: 添加了device参数以支持CPU运行。
+
 import os, sys
 import torch
 from torch.utils.data import Dataset, DataLoader
@@ -29,6 +31,7 @@ def video2sequence(video_path):
     return imagepath_list
 
 class TestData(Dataset):
+    # JULES: 添加了 device 参数以支持CPU运行。
     def __init__(self, testpath, iscrop=True, crop_size=224, scale=2.0, face_detector='fan', device='cuda:0'):
         '''
             testpath: folder, imagepath_list, image path, video path
