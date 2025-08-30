@@ -1,3 +1,5 @@
+### JULES-250831-145：添加了device参数以支持CPU运行。146：'LandmarksType._2D'在新版的face-alignment庫中已更改为'LandmarksType.TWO_D'。
+
 import numpy as np
 import torch
 '''
@@ -142,6 +144,8 @@ class KeypointRCNN(object):
 class FAN(object):
     def __init__(self, device='cuda:0'):
         import face_alignment
+        # JULES: 添加了 device 参数以支持CPU运行。
+        # JULES: 'LandmarksType._2D' 在新版的 face-alignment庫中已更改为 'LandmarksType.TWO_D'。
         self.model = face_alignment.FaceAlignment(face_alignment.LandmarksType.TWO_D, flip_input=False, device=device)
 
     def run(self, image):
