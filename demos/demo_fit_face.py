@@ -1,3 +1,5 @@
+### JULES-250831-32-把device参数传递给TestData，以确保人脸检测器能在CPU上运行。
+
 import os, sys
 import numpy as np
 import torch.backends.cudnn as cudnn
@@ -27,6 +29,7 @@ def main(args):
         torch.backends.cudnn.enabled = True
 
     # load test images 
+    # JULES: 将 device 参数传递给 TestData，以确保人脸检测器能在CPU上运行。
     testdata = TestData(args.inputpath, iscrop=args.iscrop, device=device)
 
     #-- run PIXIE
@@ -94,6 +97,7 @@ if __name__ == '__main__':
                         help='path to the test data, can be image folder, image path, image list, video')
     parser.add_argument('-s', '--savefolder', default='TestSamples/face/results', type=str,
                         help='path to the output directory, where results(obj, txt files) will be stored.')
+    # JULES: 动态设置默认设备。如果CUDA可用，则使用'cuda'，否则使用'cpu'。
     parser.add_argument('--device', default='cuda' if torch.cuda.is_available() else 'cpu', type=str,
                         help='set device, cpu for using cpu' )
     # process test images
