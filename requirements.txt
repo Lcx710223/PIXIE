@@ -13,3 +13,5 @@ face-alignment
 kornia
 yacs
 ninja
+git+https://github.com/mattloper/chumpy.git
+git+https://github.com/facebookresearch/pytorch3d.git@stable
