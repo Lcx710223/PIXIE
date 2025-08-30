@@ -1,3 +1,4 @@
+### JULES20250831-42-检查CUDA是否可用，如果不可用，则自动切换设备和渲染器。
 import os, sys
 import numpy as np
 import torch
@@ -38,6 +39,7 @@ class Visualizer(object):
         else:
             self.cfg = config
         
+        # JULES: 检查CUDA是否可用，如果不可用，则自动切换设备和渲染器
         if 'cuda' in device and not torch.cuda.is_available():
             device = 'cpu'
             print(f'cuda is not available. device is changed to cpu')
