@@ -114,7 +114,7 @@ class PIXIE(object):
         #-- resume model
         model_path = self.cfg.pretrained_modelpath
         if os.path.exists(model_path):
-            checkpoint = torch.load(model_path)
+            checkpoint = torch.load(model_path, map_location=self.device)
             for key in self.model_dict.keys():
                 util.copy_state_dict(self.model_dict[key], checkpoint[key])
         else:
