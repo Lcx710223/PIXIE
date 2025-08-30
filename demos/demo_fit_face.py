@@ -27,7 +27,7 @@ def main(args):
         torch.backends.cudnn.enabled = True
 
     # load test images 
-    testdata = TestData(args.inputpath, iscrop=args.iscrop)
+    testdata = TestData(args.inputpath, iscrop=args.iscrop, device=device)
 
     #-- run PIXIE
     pixie_cfg.model.use_tex = args.useTex
@@ -94,7 +94,7 @@ if __name__ == '__main__':
                         help='path to the test data, can be image folder, image path, image list, video')
     parser.add_argument('-s', '--savefolder', default='TestSamples/face/results', type=str,
                         help='path to the output directory, where results(obj, txt files) will be stored.')
-    parser.add_argument('--device', default='cuda:0', type=str,
+    parser.add_argument('--device', default='cuda' if torch.cuda.is_available() else 'cpu', type=str,
                         help='set device, cpu for using cpu' )
     # process test images
     parser.add_argument('--iscrop', default=True, type=lambda x: x.lower() in ['true', '1'],
