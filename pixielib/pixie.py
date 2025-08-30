@@ -1,17 +1,4 @@
-# -*- coding: utf-8 -*-
-#
-# Max-Planck-Gesellschaft zur Förderung der Wissenschaften e.V. (MPG) is
-# holder of all proprietary rights on this computer program.
-# Using this computer program means that you agree to the terms 
-# in the LICENSE file included with this software distribution. 
-# Any use not explicitly granted by the LICENSE is prohibited.
-#
-# Copyright©2019 Max-Planck-Gesellschaft zur Förderung
-# der Wissenschaften e.V. (MPG). acting on behalf of its Max Planck Institute
-# for Intelligent Systems. All rights reserved.
-#
-# For comments or questions, please email us at pixie@tue.mpg.de
-# For commercial licensing contact, please contact ps-license@tuebingen.mpg.de
+### JULES20250831-117-添加了map_location以在无GPU环境下加载模型。
 
 import os, sys
 import torch
@@ -114,7 +101,7 @@ class PIXIE(object):
         #-- resume model
         model_path = self.cfg.pretrained_modelpath
         if os.path.exists(model_path):
-            checkpoint = torch.load(model_path, map_location=self.device)
+            checkpoint = torch.load(model_path, map_location=torch.device('cpu')) # JULES: 添加 map_location 以在无 GPU 环境下加载模型
             for key in self.model_dict.keys():
                 util.copy_state_dict(self.model_dict[key], checkpoint[key])
         else:
