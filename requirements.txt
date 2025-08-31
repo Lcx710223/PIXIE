@@ -6,7 +6,7 @@ scipy
 scikit-image
 opencv-python
 scikit-image
-PyYAM
+# PyYAM
 # torch
 torchvision
 face-alignment
