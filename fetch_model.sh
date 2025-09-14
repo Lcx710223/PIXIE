@@ -16,7 +16,7 @@ read -p "Password (PIXIE):" password
 username=$(urle $username)
 password=$(urle $password)
 wget --post-data "username=$username&password=$password" 'https://download.is.tue.mpg.de/download.php?domain=pixie&sfile=pixie_model.tar&resume=1' -O './data/pixie_model.tar' --no-check-certificate --continue
-wget --post-data "username=$username&password=$password" 'https://download.is.tue.mpg.de/download.php?domain=pixie&sfile=utilities.zip&resume=1' -O './data/utilities.zip' --no-check-certificate --continue
-
+# wget --post-data "username=$username&password=$password" 'https://download.is.tue.mpg.de/download.php?domain=pixie&sfile=utilities.zip&resume=1' -O './data/utilities.zip' --no-check-certificate --continue
+cp /content/drive/MyDrive/DELTA@LCX2025/ZIP/utilities.zip /content/PIXIE/data/utilities.zip
 cd ./data
 unzip utilities.zip
